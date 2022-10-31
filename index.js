@@ -14,6 +14,9 @@ const fs = require("fs");
 app.get("/", (req, res,next) => {
  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+app.get("/data_page", (req, res,next) => {
+  res.sendFile(path.join(__dirname, "public", "data.html"));
+ });
 
 // post req to update data in file
 // app.post("/", (req, res,next) => {
@@ -52,6 +55,29 @@ app.get('/data', (req, res) => {
   res.send(users);
 });
 });
+
+// remove id based on email
+app.post('/data_page2',(req,res)=>{
+  const {name} = req.body;
+  res.send(name)
+  const users = require("./public/data/data.json");
+  for( var i = 0; i < users.length; i++){ 
+    if ( users[i].email === name) { 
+        users.splice(i, 1); 
+    }
+  }
+  fs.writeFile('./public/data/data.json', JSON.stringify(users), function (err) {
+    if (err) throw err;
+    console.log('Updated!');
+  });
+  res.send('done')
+})
+app.get('/data_page2',(req,res)=>{
+  res.send('updated')
+})
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
