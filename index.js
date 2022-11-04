@@ -35,9 +35,12 @@ app.get("/data_page", (req, res,next) => {
 app.post("/", (req, res,next) => {
   console.log(req.body);
   const users = require("./public/data/data.json");
-  const {vName,vAgency,vSize,vArea,vWork} = req.body;
+  const {vAgency,vSize,vArea,vWork} = req.body;
+  var d = new Date();
+  var hour = d.getHours();
+  var min = d.getMinutes();
   let user = {
-    name: vName,
+    name: hour+":"+min,
     agency: vAgency,
     size: vSize,
     area: vArea,
