@@ -39,8 +39,9 @@ app.post("/", (req, res,next) => {
   var d = new Date();
   var hour = d.getHours();
   var min = d.getMinutes();
+  var sec = d.getSeconds();
   let user = {
-    name: hour+":"+min,
+    name: hour+":"+min+":"+sec,
     agency: vAgency,
     size: vSize,
     area: vArea,
@@ -71,10 +72,12 @@ app.get("/data", (req, res,next) => {
 
 // remove id based on email
 app.post('/data_remove',(req,res)=>{
-  const {agency,area} = req.body;
+  const {time} = req.body;
   const users = require("./public/data/data.json");
   for( var i = 0; i < users.length; i++){ 
-    if ( users[i].agency === agency || users[i].area === area) { 
+    console.log(users[i].name)
+    console.log(time)
+    if ( users[i].name === time) { 
         users.splice(i, 1); 
     }
   }

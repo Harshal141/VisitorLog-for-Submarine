@@ -52,17 +52,30 @@
     </section>
 
     <script>
+        
         fetch('data.json').then(res => {
         return res.json();
         }).then(data => {
-        console.table(data);
 
-        const table = document.getElementById('logTable');
-        let sr = 0;
-        let visitors = 0;
+        setInterval(function(){
+            console.log('tick')
+            let sr = 0;
+            let visitors = 0;
+            const table = document.getElementById('logTable');
+        table.innerHTML = `
+            <div class="row heading-row">
+                <div class="sno">Sr. No.</div>
+                <div class="agency">Agency</div>
+                <div class="t-in">In Time</div>
+                <div class="t-size">Team Size</div>
+                <div class="w-area">Area of Work</div>
+                <div class="w-type">Type of Work</div>
+                <div class="c-out"> Check Out</div>
+            </div>
+            `
         data.forEach(element => {
             visitors+=parseInt(element.size);
-            table.innerHTML = table.innerHTML + `<div class="row">
+            table.innerHTML = table.innerHTML+ `<div class="row">
                 <div class="sno align_center">${++sr}</div>
                 <div class="agency align_center">${element.agency}</div>
                 <div class="t-in align_center">${element.name}</div>
@@ -71,8 +84,7 @@
                 <div class="w-type align_center">${element.work}</div>
                 <div class="c-out"> 
                     <form action="/data_remove" class="entryForm" method="post">
-                    <input type="hidden" name="agency" value="${element.agency}" />
-                    <input type="hidden" name="area" value="${element.area}" />
+                    <input type="hidden" name="time" value="${element.name}" />
                     <input class="sub" type="submit" value="X">
                     </form>
                 </div>
@@ -81,12 +93,11 @@
         // console.log(document.querySelector('.count'));
         // console.log(visitors);
         document.querySelector('.count').innerText = visitors;
-    
+        },2000);
+
         }).catch(err => {
             alert("Error Loading Visitor Data")
         });
-
-        document.querySelectorAll('row').length()
 
     </script>
 </body>
