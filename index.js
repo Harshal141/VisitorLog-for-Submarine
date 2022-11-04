@@ -35,9 +35,13 @@ app.get("/data_page", (req, res,next) => {
 app.post("/", (req, res,next) => {
   console.log(req.body);
   const users = require("./public/data/data.json");
-  const {vName,vAgency,vSize,vArea,vWork} = req.body;
+  const {vAgency,vSize,vArea,vWork} = req.body;
+  var d = new Date();
+  var hour = d.getHours();
+  var min = d.getMinutes();
+  var sec = d.getSeconds();
   let user = {
-    name: vName,
+    name: hour+":"+min+":"+sec,
     agency: vAgency,
     size: vSize,
     area: vArea,
@@ -68,10 +72,12 @@ app.get("/data", (req, res,next) => {
 
 // remove id based on email
 app.post('/data_remove',(req,res)=>{
-  const {agency,area} = req.body;
+  const {time} = req.body;
   const users = require("./public/data/data.json");
   for( var i = 0; i < users.length; i++){ 
-    if ( users[i].agency === agency || users[i].area === area) { 
+    console.log(users[i].name)
+    console.log(time)
+    if ( users[i].name === time) { 
         users.splice(i, 1); 
     }
   }
