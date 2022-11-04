@@ -63,17 +63,17 @@
         data.forEach(element => {
             visitors+=parseInt(element.size);
             table.innerHTML = table.innerHTML + `<div class="row">
-                <div class="sno">${++sr}</div>
-                <div class="agency">${element.agency}</div>
-                <div class="t-in">${element.name}</div>
-                <div class="t-size">${element.size}</div>
-                <div class="w-area">${element.area}</div>
-                <div class="w-type">${element.work}</div>
+                <div class="sno align_center">${++sr}</div>
+                <div class="agency align_center">${element.agency}</div>
+                <div class="t-in align_center">${element.name}</div>
+                <div class="t-size align_center">${element.size}</div>
+                <div class="w-area align_center">${element.area}</div>
+                <div class="w-type align_center">${element.work}</div>
                 <div class="c-out"> 
                     <form action="/data_remove" class="entryForm" method="post">
                     <input type="hidden" name="agency" value="${element.agency}" />
                     <input type="hidden" name="area" value="${element.area}" />
-                    <input type="submit" value="Check Out">
+                    <input class="sub" type="submit" value="X">
                     </form>
                 </div>
             </div>`
