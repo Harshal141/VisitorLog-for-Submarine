@@ -4,17 +4,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></head>
+    <title>Visitor Log</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <h1>hp id</h1>
+    <!-- <h1>hp id</h1>
     <form action="/" method="POST">
         <input type="text" id="name" name="name"><br>
         <input type="email" id="email" name="email"><br>
         <input type="submit" value="Submit">
-    </form>
-    <a href="/data">data</a><br>
-    <a href="/data_page">here is remove</a>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </form> -->
+
+    <section id="vForm">    
+        <div class="navbar container">
+            <h2>Visitor's Log</h2>
+
+            <a href="/data">
+                <div class="nav-button">
+                    <h4>Display Logs</h4>
+                    <h4>&#62;</h4>
+                </div>
+            </a>
+        </div>
+
+        <div class="container container-white">
+            <form action="/" class="entryForm" method="post">
+                <fieldset>
+                    <legend>Submit</legend>
+
+                    <label for="vName">Name</label>
+                    <input id="vName" name="vName" type="text">
+
+                    <label for="vAgency">Agency</label>
+                    <input id="vAgency" name="vAgency" type="text">
+
+                    <label for="vSize">Team Size</label>
+                    <input id="vSize" name="vSize" type="Number">
+
+                    <label for="vArea">Area of Work</label>
+                    <input  id="vArea" name="vArea" type="text">
+
+                    <label for="vWork">Type of Work</label>
+                    <input id="vWork" name="vWork" type="text">
+
+                    <div class="form-buttons">
+                        <input type="button" value="Clear">
+                        <input type="submit" value="Submit">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+
+    <br>
+    <!-- <a href="/data_page">here is remove</a> -->
 </body>
 </html>

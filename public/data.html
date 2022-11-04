@@ -4,14 +4,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></head>
+    <title>Visitor's Log</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
 <body>
-    <h1>Enter email to remove</h1>
+    <!-- <h1>Enter email to remove</h1>
     <form action="/data_page2" method="POST">
         <input type="text" id="name" name="name"><br>
         <input type="submit" value="Submit">
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </form> -->
+
+    
+    <section id="logs">
+
+        <div class="navbar container">
+            <h2>Visitor's Log</h2>
+            <p>Visitors Inside : <h3>10</h3></p>
+
+            <a href="/">
+                <div class="nav-button">
+                    <h4>New Entry</h4>
+                    <h4>&#43;</h4>
+                </div>
+            </a>
+        </div>
+
+        <div id="logTable" class="table container container-white">
+            <div class="row heading-row">
+                <div class="sno">Sr. No.</div>
+                <div class="agency">Agency</div>
+                <div class="t-in">In Time</div>
+                <div class="t-size">Team Size</div>
+                <div class="w-area">Area of Work</div>
+                <div class="w-type">Type of Work</div>
+                <div class="c-out"> Check Out</div>
+            </div>
+            <!-- <div class="row">
+                <div class="sno">1</div>
+                <div class="agency">Engineers</div>
+                <div class="t-in">16:45 Hrs</div>
+                <div class="t-size">3</div>
+                <div class="w-area">Compartment 1</div>
+                <div class="w-type">Regular Inspection</div>
+                <div class="c-out"> Check Out</div>
+            </div> -->
+        </div>
+    </section>
+
+    <script>
+        fetch('data.json').then(res => {
+        return res.json();
+        }).then(data => {
+        console.table(data);
+
+        const table = document.getElementById('logTable');
+        let sr = 0;
+        data.forEach(element => {
+            table.innerHTML = table.innerHTML + `<div class="row">
+                <div class="sno">${++sr}</div>
+                <div class="agency">${element.agency}</div>
+                <div class="t-in">${element.name}</div>
+                <div class="t-size">${element.size}</div>
+                <div class="w-area">${element.area}</div>
+                <div class="w-type">${element.work}</div>
+                <div class="c-out"> 
+                    <form action="/data_remove" class="entryForm" method="post">
+                    <input type="hidden" name="agency" value="${element.agency}" />
+                    <input type="hidden" name="area" value="${element.area}" />
+                    <input type="submit" value="Check Out">
+                    </form>
+                </div>
+            </div>`
+        });
+        }).catch(err => {
+            alert("Error Loading Visitor Data")
+        });
+
+        document.querySelectorAll('row').length()
+
+    </script>
 </body>
 </html>

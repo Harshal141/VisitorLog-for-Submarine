@@ -18,6 +18,9 @@ app.get("/data_page", (req, res,next) => {
   res.sendFile(path.join(__dirname, "public", "data.html"));
  });
 
+ //for using css in index.html
+ app.use(express.static(__dirname + '/public'));
+
 // post req to update data in file
 // app.post("/", (req, res,next) => {
 //     console.log(req.body);
@@ -32,10 +35,13 @@ app.get("/data_page", (req, res,next) => {
 app.post("/", (req, res,next) => {
   console.log(req.body);
   const users = require("./public/data/data.json");
-  const {name,email} = req.body;
+  const {vName,vAgency,vSize,vArea,vWork} = req.body;
   let user = {
-    name: name,
-    email: email
+    name: vName,
+    agency: vAgency,
+    size: vSize,
+    area: vArea,
+    work: vWork
   };
   users.push(user);
 
@@ -46,23 +52,26 @@ app.post("/", (req, res,next) => {
   res.redirect('/')
 });
 
-app.get('/data', (req, res) => {
+app.get("/data", (req, res,next) => {
   fs.readFile("./public/data/data.json", function(err, data) {
   // if (err) throw err;
   // Converting to JSON
   const users = JSON.parse(data);
   console.log(users);
-  res.send(users);
-});
+  // res.send(users);
+  });
+  res.sendFile(path.join(__dirname, "public", "data.html"));
+  // setTimeout(() => {
+  //   location.reload();
+  // }, 1000);
 });
 
 // remove id based on email
-app.post('/data_page2',(req,res)=>{
-  const {name} = req.body;
-  res.send(name)
+app.post('/data_remove',(req,res)=>{
+  const {agency,area} = req.body;
   const users = require("./public/data/data.json");
   for( var i = 0; i < users.length; i++){ 
-    if ( users[i].email === name) { 
+    if ( users[i].agency === agency || users[i].area === area) { 
         users.splice(i, 1); 
     }
   }
@@ -70,8 +79,10 @@ app.post('/data_page2',(req,res)=>{
     if (err) throw err;
     console.log('Updated!');
   });
-  res.send('done')
+  res.redirect('/data');
 })
+
+
 app.get('/data_page2',(req,res)=>{
   res.send('updated')
 })
