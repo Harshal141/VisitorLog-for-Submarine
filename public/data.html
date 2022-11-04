@@ -19,7 +19,7 @@
 
         <div class="navbar container">
             <h2>Visitor's Log</h2>
-            <p>Visitors Inside : <h3>10</h3></p>
+            <p>Visitors Inside : <h3 class="count">0</h3></p>
 
             <a href="/">
                 <div class="nav-button">
@@ -59,7 +59,9 @@
 
         const table = document.getElementById('logTable');
         let sr = 0;
+        let visitors = 0;
         data.forEach(element => {
+            visitors+=parseInt(element.size);
             table.innerHTML = table.innerHTML + `<div class="row">
                 <div class="sno">${++sr}</div>
                 <div class="agency">${element.agency}</div>
@@ -76,6 +78,10 @@
                 </div>
             </div>`
         });
+        // console.log(document.querySelector('.count'));
+        // console.log(visitors);
+        document.querySelector('.count').innerText = visitors;
+    
         }).catch(err => {
             alert("Error Loading Visitor Data")
         });
