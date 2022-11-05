@@ -39,6 +39,7 @@
 
     
     <script>
+        setInterval(function(){
 
         // accesing data.json file to view visitors log
         
@@ -46,7 +47,6 @@
         return res.json();
         }).then(data => {
 
-        setInterval(function(){
             console.log('tick')
             let sr = 0;
             let visitors = 0;
@@ -79,14 +79,12 @@
                 </div>
             </div>`
         });
-        
         document.querySelector('.count').innerText = visitors;
-        },2000);
 
         }).catch(err => {
             alert("Error Loading Visitor Data")
         });
-
+        },2000);
     </script>
 </body>
 </html>
