@@ -33,7 +33,6 @@ app.get("/data_page", (req, res,next) => {
 // });
 
 app.post("/", (req, res,next) => {
-  console.log(req.body);
   const users = require("./public/data/data.json");
   const {vAgency,vSize,vArea,vWork} = req.body;
   var d = new Date();
@@ -98,4 +97,5 @@ app.get('/data_page2',(req,res)=>{
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
+  console.log(`http://localhost:${port}`)
 })
