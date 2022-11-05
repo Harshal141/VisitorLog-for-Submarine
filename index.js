@@ -16,21 +16,10 @@ app.get("/", (req, res,next) => {
 });
 app.get("/data_page", (req, res,next) => {
   res.sendFile(path.join(__dirname, "public", "data.html"));
- });
+});
 
- //for using css in index.html
- app.use(express.static(__dirname + '/public'));
-
-// post req to update data in file
-// app.post("/", (req, res,next) => {
-//     console.log(req.body);
-//     // res.send(req.body);
-//     fs.appendFile('./public/data/data.json', JSON.stringify(req.body)+",", function (err) {
-//         if (err) throw err;
-//         console.log('Updated!');
-//     });
-//     res.redirect('/')
-// });
+//for using css in index.html
+app.use(express.static(__dirname + '/public'));
 
 app.post("/", (req, res,next) => {
   const users = require("./public/data/data.json");
@@ -47,7 +36,6 @@ app.post("/", (req, res,next) => {
     work: vWork
   };
   users.push(user);
-
   fs.writeFile('./public/data/data.json', JSON.stringify(users), function (err) {
       if (err) throw err;
       console.log('Updated!');
@@ -61,21 +49,15 @@ app.get("/data", (req, res,next) => {
   // Converting to JSON
   const users = JSON.parse(data);
   console.log(users);
-  // res.send(users);
   });
   res.sendFile(path.join(__dirname, "public", "data.html"));
-  // setTimeout(() => {
-  //   location.reload();
-  // }, 1000);
 });
 
-// remove id based on email
+// remove id based on time
 app.post('/data_remove',(req,res)=>{
   const {time} = req.body;
   const users = require("./public/data/data.json");
   for( var i = 0; i < users.length; i++){ 
-    console.log(users[i].name)
-    console.log(time)
     if ( users[i].name === time) { 
         users.splice(i, 1); 
     }
@@ -87,13 +69,9 @@ app.post('/data_remove',(req,res)=>{
   res.redirect('/data');
 })
 
-
-app.get('/data_page2',(req,res)=>{
-  res.send('updated')
+app.get('*', function (req, res) {
+  res.redirect('/');
 })
-
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

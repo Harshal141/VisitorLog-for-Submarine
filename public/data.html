@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,12 +9,6 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <!-- <h1>Enter email to remove</h1>
-    <form action="/data_page2" method="POST">
-        <input type="text" id="name" name="name"><br>
-        <input type="submit" value="Submit">
-    </form> -->
-
     
     <section id="logs">
 
@@ -39,19 +34,13 @@
                 <div class="w-type">Type of Work</div>
                 <div class="c-out"> Check Out</div>
             </div>
-            <!-- <div class="row">
-                <div class="sno">1</div>
-                <div class="agency">Engineers</div>
-                <div class="t-in">16:45 Hrs</div>
-                <div class="t-size">3</div>
-                <div class="w-area">Compartment 1</div>
-                <div class="w-type">Regular Inspection</div>
-                <div class="c-out"> Check Out</div>
-            </div> -->
         </div>
     </section>
 
+    
     <script>
+
+        // accesing data.json file to view visitors log
         
         fetch('data.json').then(res => {
         return res.json();
@@ -90,8 +79,7 @@
                 </div>
             </div>`
         });
-        // console.log(document.querySelector('.count'));
-        // console.log(visitors);
+        
         document.querySelector('.count').innerText = visitors;
         },2000);
 
