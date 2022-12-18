@@ -4,6 +4,15 @@
 <a href="https://github.com/Harshal141/readme-typing-svg"><img src="https://readme-typing-svg.herokuapp.com?lines=Node-Project;Android;Termux;Web-Hosting&center=true&width=500&height=50"></a>
 </div>
 
+- A lightweight visitors log book which connects various mobile devices without
+internet and keeps track of the people currently boarded on a submarine.
+- The major challenges included, connecting and sending data through those
+devices over an extended range and thick walls, creating a server light enough to
+be able to run on a hand held device with very limited resources and completing it
+within 10 days.
+- Built using HTML, CSS, JS, ExpressJS and NodeJS. On the tablet, Termux Command
+Line Interface was setup to host the server.
+
 <br />
 
 <img align="right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLp-Sd3erhU7-mawEusETLZ-QKhZ0qTGv19w&usqp=CAU">
